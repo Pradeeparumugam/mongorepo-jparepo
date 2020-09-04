@@ -1,5 +1,8 @@
 package com.dxctraining.productmgt.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -56,9 +59,14 @@ public class ProductController {
 	}*/
 	@GetMapping("/getname/{name}")
 	@ResponseStatus(HttpStatus.OK)
-	public ProductDto getByName(@NotBlank @PathVariable("name") String name) {
-		Product prod=service.findByName(name);
-		ProductDto dto=util.productdto(prod);
-		return dto;
+	public List<ProductDto> getByName(@NotBlank @PathVariable("name") String name) {
+		List<Product> prods=service.findByName(name);
+		List<ProductDto> array=new ArrayList<>();
+		for(Product product:prods) {
+			
+		ProductDto dto=util.productdto(product);
+		array.add(dto);
+		}
+		return array;
 	}
 }

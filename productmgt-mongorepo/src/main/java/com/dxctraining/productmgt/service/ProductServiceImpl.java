@@ -1,5 +1,6 @@
 package com.dxctraining.productmgt.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class ProductServiceImpl implements ProductService{
 		return prod;
 	}
 	@Override
-	public Product findByName(String name) {
-		Product prod=dao.findByName(name);
-		return prod;
+	public List<Product> findByName(String name) {
+		List<Product> prodlist=dao.findByName(name);
+		return prodlist;
 	}
 }
